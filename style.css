@@ -139,3 +139,20 @@ body{
   .about-grid{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
 }
+
+/* MOBILE MENU SHOW */
+@media(max-width:1000px){
+  .nav.show {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fff;
+    position: absolute;
+    top: 60px; /* height of header */
+    right: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 100;
+  }
+}
