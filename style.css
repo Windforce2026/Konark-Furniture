@@ -140,10 +140,10 @@ body{
   .contact-grid{grid-template-columns:1fr;}
 }
 
-/* MOBILE MENU SHOW */
+/* MOBILE MENU */
 @media(max-width:1000px){
-  .nav.show {
-    display: flex;
+  .nav {
+    display: none;
     flex-direction: column;
     gap: 12px;
     background: #fff;
@@ -155,4 +155,16 @@ body{
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     z-index: 100;
   }
+
+  .nav.show {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: block;
+  }
 }
+
+  }
+}
+
