@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Konark Furniture — Crafted Comfort for Every Space</title>
+
+  <!-- Google Font: Jost -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Script -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="Konark Furniture Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <div class="brand-name">Konark <span>Furniture</span></div>
+          <div class="tagline">Crafted Comfort for Every Space</div>
+        </div>
+      </div>
+
+      <nav id="navMenu" class="nav">
+        <a href="#home"><i class="fas fa-house"></i> Home</a>
+        <a href="#products"><i class="fas fa-couch"></i> Products</a>
+        <a href="#reviews"><i class="fas fa-star"></i> Reviews</a>
+        <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+
+      <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1>Crafted Comfort for Every Space</h1>
+        <p>Handcrafted home & office furniture — premium materials, custom sizes, and reliable support.</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn-primary">Explore Collection</a>
+          <a href="#contact" class="btn-outline">Request Quote</a>
+        </div>
+        <div class="trust">
+          <span><i class="fas fa-shipping-fast"></i> Delivery & Installation</span>
+          <span><i class="fas fa-tools"></i> Repair & Restoration</span>
+          <span><i class="fas fa-hand-holding-heart"></i> After-sales Support</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="images/shop.jpeg" alt="Showroom" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Collection</h2>
+        <p class="muted">Home & Office — click a product to view details and enquire.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-row">
+        <input id="searchInput" type="search" placeholder="Search product name or keyword..." oninput="filterProducts()" />
+        <div class="filter-buttons">
+          <button class="chip active" data-cat="all" onclick="applyCategory(event)">All</button>
+          <button class="chip" data-cat="home" onclick="applyCategory(event)">Home</button>
+          <button class="chip" data-cat="office" onclick="applyCategory(event)">Office</button>
+          <button class="chip" data-cat="sofa" onclick="applyCategory(event)">Sofa</button>
+          <button class="chip" data-cat="table" onclick="applyCategory(event)">Table</button>
+          <button class="chip" data-cat="bed" onclick="applyCategory(event)">Bed</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="productGrid" class="product-grid">
+        <article class="product-card" data-categories="home,sofa" data-name="Regal 3-Seater Sofa" data-price="₹24,999" data-stock="In stock" data-dimensions="200cm x 90cm x 95cm" data-specs="Solid wood frame, premium fabric upholstery" data-images='["images/sofa.jpeg"]'>
+          <div class="img-wrap">
+            <img src="images/sofa.jpeg" alt="Regal 3-Seater Sofa" loading="lazy" />
+          </div>
+          <div class="prod-body">
+            <h3 class="prod-title">Regal 3-Seater Sofa</h3>
+            <p class="prod-desc">Comfort-forward design with modern wooden legs and premium cushioning.</p>
+            <div class="prod-meta">
+              <div class="price">₹24,999</div>
+              <div class="stock"><i class="fas fa-check-circle"></i> In stock</div>
+            </div>
+            <div class="prod-actions">
+              <button class="btn-outline" onclick="openQuickEnquire(event, this)">Request a Quote</button>
+              <button class="btn-primary" onclick="openProductModal(this)">View Details</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+      <div class="modal-grid">
+        <div class="modal-gallery">
+          <img id="modalMainImg" src="" alt="product image" />
+          <div id="modalThumbs" class="thumbs"></div>
+        </div>
+        <div class="modal-info">
+          <h3 id="modalTitle"></h3>
+          <p id="modalShortDesc" class="muted"></p>
+          <div class="modal-meta">
+            <div><strong>Price</strong><div id="modalPrice" class="price"></div></div>
+            <div><strong>Availability</strong><div id="modalStock"></div></div>
+            <div><strong>Dimensions</strong><div id="modalDimensions"></div></div>
+            <div><strong>Specifications</strong><div id="modalSpecs" class="muted"></div></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-outline" onclick="openQuickEnquire(event, this)">Request Quote</button>
+            <button class="btn-primary" id="modalWhatsappBtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button>
+          </div>
+          <div class="share-row">
+            <span class="muted">Share:</span>
+            <a href="#" onclick="shareFB();return false;"><i class="fab fa-facebook"></i></a>
+            <a href="#" onclick="shareInsta();return false;"><i class="fab fa-instagram"></i></a>
+            <a href="#" onclick="shareLink();return false;"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="section alt-bg">
+    <div class="container">
+      <h2>Customer Reviews</h2>
+      <p class="muted">Real feedback from our happy customers</p>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="rev-head"><img src="images/rev1.jpg" alt="Anita"><div><strong>Anita Sharma</strong><div class="muted">Bangalore</div></div></div>
+          <p>“Beautiful craftsmanship — our sofa looks and feels premium. Delivery was quick and installation was perfect.”</p>
+        </div>
+        <div class="review-card">
+          <div class="rev-head"><img src="images/rev2.jpg" alt="Rajat"><div><strong>Rajat Verma</strong><div class="muted">Noida</div></div></div>
+          <p>“Ordered custom office desks — great build quality and excellent after-sales service.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>About Konark Furniture</h2>
+        <p>We are a family-run workshop with 25+ years of experience crafting furniture for homes and offices.</p>
+        <ul class="bullets">
+          <li><i class="fas fa-check"></i> Custom designs</li>
+          <li><i class="fas fa-check"></i> Free on-site measurement</li>
+          <li><i class="fas fa-check"></i> Delivery & installation</li>
+        </ul>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="https://wa.me/919876543210"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <img src="images/workshop.jpeg" alt="Workshop">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact-section">
+    <div class="container contact-grid">
+      <div>
+        <h2>Contact</h2>
+        <p class="muted">For custom quotes or dealership enquiries.</p>
+        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> konarkfurniture@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Shop No.12, Furniture Market, Delhi NCR</p>
+      </div>
+      <form id="contactForm" class="contact-form" onsubmit="submitContact(event)">
+        <input name="name" placeholder="Your name" required />
+        <input name="phone" placeholder="Phone / WhatsApp" required />
+        <textarea name="message" rows="5" placeholder="Your message"></textarea>
+        <button class="btn-primary" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Konark Furniture — Crafted Comfort</div>
+      <div class="socials">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/919523885567"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a id="whatsappFloat" class="whatsapp-float" href="https://wa.me/919523885567" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>
